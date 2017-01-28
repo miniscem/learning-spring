@@ -1,1 +1,7 @@
 .metadata/*
+*.class
+.settings/
+.project
+.classpath
+.recommenders/
+SpringTutorial/target
