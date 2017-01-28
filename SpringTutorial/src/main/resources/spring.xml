@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<!-- property "injector" example -->
+	<!-- note: setter necessary in the target class -->
+	<bean id="triangle_property_bean" class="com.markminisce.common.Triangle">
+		<property name="type" value="Scalene" />
+	</bean>
+	
+	<!-- constructor "injector" by argument index -->
+	<bean id="triangle_index_bean" class="com.markminisce.common.Triangle" >
+		<constructor-arg index="0" value="Equilateral" />
+		<constructor-arg index="1" value="20"/>		
+	</bean>	
+	
+	<!-- constructor "injector" by argument data type -->
+	<!-- spring will choose correct constructor based on data type matching -->
+	<bean id="triangle_type_bean" class="com.markminisce.common.Triangle">
+		<constructor-arg type="java.lang.String" value="Isosceles" />	
+	</bean>
+</beans>
