@@ -3,29 +3,24 @@
 
 <beans>
 
-	<bean id="triangle" class="com.markminisce.common.objectdi.Triangle" name="triangle-alias-1">
-		<property name="points">
-			<list>
-				<ref bean="point1"></ref>
-				<ref bean="point2"></ref>
-				<ref bean="point3"></ref>
-			</list>
-		</property>
+	<bean id="triangle" class="com.markminisce.common.objectdi.Triangle" 
+			name="triangle-alias-1"
+			autowire="byName">		
 	</bean>
 		
 	<!-- property "injector" example -->
 	<!-- note: setter necessary in the target class -->
-	<bean id="point1" class="com.markminisce.common.objectdi.Point">
+	<bean id="pointA" class="com.markminisce.common.objectdi.Point">
 		<property name="x" value="0" />
 		<property name="y" value="0" />
 	</bean>
 	
-	<bean id="point2" class="com.markminisce.common.objectdi.Point">
+	<bean id="pointB" class="com.markminisce.common.objectdi.Point">
 		<property name="x" value="-20" />
 		<property name="y" value="0" />
 	</bean>	
 	
-	<bean id="point3" class="com.markminisce.common.objectdi.Point">
+	<bean id="pointC" class="com.markminisce.common.objectdi.Point">
 		<property name="x" value="20" />
 		<property name="y" value="0" />
 	</bean>	
