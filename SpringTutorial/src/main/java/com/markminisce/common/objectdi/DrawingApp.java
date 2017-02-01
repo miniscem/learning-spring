@@ -8,5 +8,9 @@ public class DrawingApp {
 		ApplicationContext context = new ClassPathXmlApplicationContext("objectdi.xml");
 		Triangle triangle = (Triangle)context.getBean("triangle"); 
 		triangle.draw();
+		
+		System.out.println("--------------------------------------------------");
+		Triangle triangleAlias = (Triangle)context.getBean("triangle-alias-1"); 
+		triangleAlias.draw();
 	}
 }
