@@ -3,11 +3,12 @@ package com.markminisce.common.objectdi;
 import java.util.*;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware; 
 
 //give information from the container to the bean using the "ContextAware"
-public class Triangle implements ApplicationContextAware{
+public class Triangle implements ApplicationContextAware, BeanNameAware{
 	private Point pointA;
 	private Point pointB; 
 	private Point pointC; 
@@ -66,5 +67,10 @@ public class Triangle implements ApplicationContextAware{
 		this.setPointB((Point)context.getBean("pointB"));
 		this.setPointC((Point)context.getBean("pointC"));
 		
+	}
+	
+	public void setBeanName(String beanName) {
+		
+		System.out.println("The bean name is: " + beanName); 
 	}
 }
