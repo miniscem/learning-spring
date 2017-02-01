@@ -16,7 +16,7 @@ public class DrawingApp {
 		//Triangle triangle = (Triangle)factory.getBean("triangle");
 					
 		//using ApplicationContext interface (instead of BeanFactory) to read the bean config file.
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("disample.xml");
 		
 		//instantiating objects using ApplicationContext
 		Triangle propertyTriangle = (Triangle)context.getBean("triangle_property_bean"); 
