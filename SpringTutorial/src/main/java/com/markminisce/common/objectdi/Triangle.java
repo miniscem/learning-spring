@@ -1,37 +1,21 @@
 package com.markminisce.common.objectdi;
 
+import java.util.*; 
+
 public class Triangle {
-	private Point a; 
-	private Point b; 
-	private Point c; 
-	
-	public Point getA() {
-		return a;
+	private List<Point> points;
+		
+	public List<Point> getPoints() {
+		return points;
 	}
 
-	public void setA(Point a) {
-		this.a = a;
-	}
-
-	public Point getB() {
-		return b;
-	}
-
-	public void setB(Point b) {
-		this.b = b;
-	}
-
-	public Point getC() {
-		return c;
-	}
-
-	public void setC(Point c) {
-		this.c = c;
+	public void setPoints(List<Point> points) {
+		this.points = points;
 	}
 
 	public void draw(){
-		System.out.println("Point A = " + getA().getX() + ", " + getA().getY());
-		System.out.println("Point B = " + getB().getX() + ", " + getB().getY());
-		System.out.println("Point C = " + getC().getX() + ", " + getC().getY());
+		for(Point p: this.points){
+			System.out.println(p.getX() + "," + p.getY());
+		}
 	}
 }
