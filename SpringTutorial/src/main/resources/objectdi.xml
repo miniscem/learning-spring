@@ -10,17 +10,17 @@
 		
 	<!-- property "injector" example -->
 	<!-- note: setter necessary in the target class -->
-	<bean id="pointA" class="com.markminisce.common.objectdi.Point">
+	<bean id="pointA" class="com.markminisce.common.objectdi.Point" scope="prototype">
 		<property name="x" value="0" />
 		<property name="y" value="0" />
 	</bean>
 	
-	<bean id="pointB" class="com.markminisce.common.objectdi.Point">
+	<bean id="pointB" class="com.markminisce.common.objectdi.Point" scope="prototype">
 		<property name="x" value="-20" />
 		<property name="y" value="0" />
 	</bean>	
 	
-	<bean id="pointC" class="com.markminisce.common.objectdi.Point">
+	<bean id="pointC" class="com.markminisce.common.objectdi.Point" scope="prototype">
 		<property name="x" value="20" />
 		<property name="y" value="0" />
 	</bean>	
