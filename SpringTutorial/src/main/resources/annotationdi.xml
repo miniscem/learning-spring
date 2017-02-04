@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- add all xml namespaces that allow for qualifier and annotation related config -->
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+		xmlns:context="http://www.springframework.org/schema/context">
+		
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- spring assumes properties file is in the same directory as this xml config file -->
+		<property name="locations" value="pointsconfig.properties" />
+	</bean>
+	
+	<bean id="triangle" class="com.markminisce.annotations.Triangle">
+		<property name="pointA" ref="pointA" />
+		<property name="pointB" ref="pointB" />
+		<property name="pointC" ref="pointC" />
+	</bean>
+
+	<bean id="circle" class="com.markminisce.annotations.Circle">		
+		<property name="center" ref="pointA" /> 
+	</bean>
+	
+	<bean id="autowired_circle" class="com.markminisce.annotations.AutowiredCircle"> 
+	</bean>
+	
+	<!-- name id="center" matches the member variable name within AutowiredCircle class -->
+	<!-- @Autowired looks for the type first, if there are many beans of the same type-->
+	<!-- then looks for the name of the bean to match the member variable -->
+	<!-- then looks for qualifier in bean definition that matches qualifier of annotation -->
+	<bean id="center" class="com.markminisce.annotations.Point" scope="prototype">
+		<qualifier value="autowiredCircleRelated" />
+		<property name="x" value="${pointA.pointX}" />
+		<property name="y" value="${pointA.pointY}" />
+	</bean>
+	
+	<bean id="pointA" class="com.markminisce.annotations.Point" scope="prototype">
+		<property name="x" value="${pointA.pointX}" />
+		<property name="y" value="${pointA.pointY}" />
+	</bean>
+	<bean id="pointB" class="com.markminisce.annotations.Point" scope="prototype">
+		<property name="x" value="-20" />
+		<property name="y" value="0" />
+	</bean>
+	<bean id="pointC" class="com.markminisce.annotations.Point" scope="prototype">
+		<property name="x" value="0" />
+		<property name="y" value="20" />
+	</bean>
+	
+	<!-- specify the bean post processor so the config -->
+<!-- 	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" /> -->
+	
+	<!-- post processor looks for the @Autowired annotation-->
+<!-- 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
+	
+	<!-- add all annotation post processors like to two commented out above -->
+	<context:annotation-config />
+</beans>
