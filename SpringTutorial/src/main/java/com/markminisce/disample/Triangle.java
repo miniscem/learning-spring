@@ -1,4 +1,4 @@
-package com.markminisce.common.disample;
+package com.markminisce.disample;
 
 public class Triangle {
 	private String type; 

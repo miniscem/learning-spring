@@ -1,14 +1,11 @@
-package com.markminisce.common.objectdi;
+package com.markminisce.beaninterface;
 
-import java.util.*;
-
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware; 
 
 //give information from the container to the bean using the "ContextAware"
-public class Triangle implements ApplicationContextAware, BeanNameAware{
+//InitializingBean tells spring that Bean needs to know when its initialized - method needs to be called 
+//  when the properties are set.
+public class Triangle{
 	private Point pointA;
 	private Point pointB; 
 	private Point pointC; 
@@ -57,20 +54,5 @@ public class Triangle implements ApplicationContextAware, BeanNameAware{
 		System.out.println("Point C:" + getPointC().getX() + "," + getPointC().getY());
 	}
 
-
-	//
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		this.context = context; 
-		
-		//allows each point to be a prototype while the parent is a singleton.
-		this.setPointA((Point)context.getBean("pointA"));
-		this.setPointB((Point)context.getBean("pointB"));
-		this.setPointC((Point)context.getBean("pointC"));
-		
-	}
-	
-	public void setBeanName(String beanName) {
-		
-		System.out.println("The bean name is: " + beanName); 
-	}
 }
+

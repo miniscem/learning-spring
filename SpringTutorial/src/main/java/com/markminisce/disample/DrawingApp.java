@@ -1,4 +1,4 @@
-package com.markminisce.common.disample;
+package com.markminisce.disample;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory; 

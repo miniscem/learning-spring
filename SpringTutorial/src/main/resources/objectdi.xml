@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
-<beans>
+<!-- configure global init and destroy method so do not have to specifiy for each bean in xml -->
+<beans default-init-method="myInit" default-destroy-method="myDestroy">
 
+	<!-- ***************************************************************** -->
+	<!-- demonstrating bean explicit wiring by inheriting bean definitions -->
+	<!-- ***************************************************************** -->	
+	<bean id="parenttriangle" class="com.markminisce.common.objectdi.Triangle" 
+			abstract="true">
+		<property name="pointA" ref="pointA" />
+	</bean>
+		
+	<bean id="triangle_explicit_wiring" class="com.markminisce.common.objectdi.Triangle" 
+			parent="parenttriangle">
+		<property name="pointB" ref="pointB" />
+		<property name="pointC" ref="pointC" />
+	</bean>
+	
+	<bean id="triangle_explicit_wiring2" class="com.markminisce.common.objectdi.Triangle"
+			parent="parenttriangle">
+		<property name="pointB" ref="pointB" />		
+	</bean>
+	
+	<!-- ****************************************************** -->
+	<!-- demonstrating bean auto-wiring by member variable name -->
+	<!-- ****************************************************** -->
+	
 	<bean id="triangle" class="com.markminisce.common.objectdi.Triangle" 
 			name="triangle-alias-1"
 			autowire="byName">		
@@ -10,9 +34,15 @@
 		
 	<!-- property "injector" example -->
 	<!-- note: setter necessary in the target class -->
+	<!-- illustrating an OOTB spring beanfactorypostprocessor with properties config file-->
 	<bean id="pointA" class="com.markminisce.common.objectdi.Point" scope="prototype">
-		<property name="x" value="0" />
-		<property name="y" value="0" />
+		<property name="x" value="${pointA.pointX}" />
+		<property name="y" value="${pointA.pointY}" />
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- spring assumes properties file is in the same directory as this xml config file -->
+		<property name="locations" value="pointsconfig.properties" />
 	</bean>
 	
 	<bean id="pointB" class="com.markminisce.common.objectdi.Point" scope="prototype">
@@ -24,4 +54,15 @@
 		<property name="x" value="20" />
 		<property name="y" value="0" />
 	</bean>	
+	
+	<!-- ********************************************************* -->
+	<!-- Register the bean post processor with the spring framework-->
+	<!-- ********************************************************* -->
+	<bean class="com.markminisce.common.DisplayNameBeanPostProcessor" />
+	
+	<!-- ***************************************************************** -->
+	<!-- Register the bean factory post processor with the spring framework-->
+	<!-- ***************************************************************** -->
+	<bean class="com.markminisce.common.MyBeanFactoryPostProcessor" />
+	
 </beans>

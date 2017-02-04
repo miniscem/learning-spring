@@ -1,4 +1,4 @@
-package com.markminisce.common.objectdi;
+package com.markminisce.objectdi;
 
 public class Point {
 	private int x; 
