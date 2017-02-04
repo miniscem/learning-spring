@@ -7,18 +7,18 @@
 	<!-- ***************************************************************** -->
 	<!-- demonstrating bean explicit wiring by inheriting bean definitions -->
 	<!-- ***************************************************************** -->	
-	<bean id="parenttriangle" class="com.markminisce.common.objectdi.Triangle" 
+	<bean id="parenttriangle" class="com.markminisce.objectdi.Triangle" 
 			abstract="true">
 		<property name="pointA" ref="pointA" />
 	</bean>
 		
-	<bean id="triangle_explicit_wiring" class="com.markminisce.common.objectdi.Triangle" 
+	<bean id="triangle_explicit_wiring" class="com.markminisce.objectdi.Triangle" 
 			parent="parenttriangle">
 		<property name="pointB" ref="pointB" />
 		<property name="pointC" ref="pointC" />
 	</bean>
 	
-	<bean id="triangle_explicit_wiring2" class="com.markminisce.common.objectdi.Triangle"
+	<bean id="triangle_explicit_wiring2" class="com.markminisce.objectdi.Triangle"
 			parent="parenttriangle">
 		<property name="pointB" ref="pointB" />		
 	</bean>
@@ -27,7 +27,7 @@
 	<!-- demonstrating bean auto-wiring by member variable name -->
 	<!-- ****************************************************** -->
 	
-	<bean id="triangle" class="com.markminisce.common.objectdi.Triangle" 
+	<bean id="triangle" class="com.markminisce.objectdi.Triangle" 
 			name="triangle-alias-1"
 			autowire="byName">		
 	</bean>
@@ -35,7 +35,7 @@
 	<!-- property "injector" example -->
 	<!-- note: setter necessary in the target class -->
 	<!-- illustrating an OOTB spring beanfactorypostprocessor with properties config file-->
-	<bean id="pointA" class="com.markminisce.common.objectdi.Point" scope="prototype">
+	<bean id="pointA" class="com.markminisce.objectdi.Point" scope="prototype">
 		<property name="x" value="${pointA.pointX}" />
 		<property name="y" value="${pointA.pointY}" />
 	</bean>
@@ -45,12 +45,12 @@
 		<property name="locations" value="pointsconfig.properties" />
 	</bean>
 	
-	<bean id="pointB" class="com.markminisce.common.objectdi.Point" scope="prototype">
+	<bean id="pointB" class="com.markminisce.objectdi.Point" scope="prototype">
 		<property name="x" value="-20" />
 		<property name="y" value="0" />
 	</bean>	
 	
-	<bean id="pointC" class="com.markminisce.common.objectdi.Point" scope="prototype">
+	<bean id="pointC" class="com.markminisce.objectdi.Point" scope="prototype">
 		<property name="x" value="20" />
 		<property name="y" value="0" />
 	</bean>	

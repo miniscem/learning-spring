@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 //give information from the container to the bean using the "ContextAware"
 //InitializingBean tells spring that Bean needs to know when its initialized - method needs to be called 
 //  when the properties are set.
-public class Triangle{
+public class Triangle implements Shape{
 	private Point pointA;
 	private Point pointB; 
 	private Point pointC; 
@@ -49,6 +49,7 @@ public class Triangle{
 
 
 	public void draw(){
+		System.out.println("Drawing Triangle");
 		System.out.println("Point A:" + getPointA().getX() + "," + getPointA().getY());
 		System.out.println("Point B:" + getPointB().getX() + "," + getPointB().getY());
 		System.out.println("Point C:" + getPointC().getX() + "," + getPointC().getY());
