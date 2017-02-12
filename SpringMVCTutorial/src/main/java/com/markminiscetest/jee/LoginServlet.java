@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * classic servlet architecture example. 
+ * 
+ * **/
 @WebServlet(urlPatterns = "/login.do")
 public class LoginServlet extends HttpServlet {
 
@@ -21,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String name = request.getParameter("name");
-		String password = request.getParameter("password");
+		String password = request.getParameter("password"); 
 
 		boolean isValidUser = service.validateUser(name, password);
 
