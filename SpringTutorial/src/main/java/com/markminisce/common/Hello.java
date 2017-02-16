@@ -2,7 +2,6 @@ package com.markminisce.common;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.markminisce.services.HelloWorldService; 
  
 public class Hello {

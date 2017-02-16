@@ -14,7 +14,13 @@ public class DrawingApp {
 		triangle.draw();
 		
 		Shape circle = (Circle)context.getBean("circle"); 
-		circle.draw(); 
+		circle.draw();
 		
+		//using @Component annotation in Rectangle
+		Shape rectangle = (Rectangle)context.getBean("rectangle"); 
+		rectangle.draw(); 
+		
+		System.out.println(context.getMessage("greeting", null, "Default greeting", null));
+		System.out.println(context.getMessage("greeting_warm", null, "Default warm greeting", null));
 	}
 }

@@ -7,6 +7,7 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 		xmlns:context="http://www.springframework.org/schema/context">
 		
+	<!-- registering the properties files with spring-->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<!-- spring assumes properties file is in the same directory as this xml config file -->
 		<property name="locations" value="pointsconfig.properties" />
@@ -48,6 +49,16 @@
 		<property name="y" value="20" />
 	</bean>
 	
+	<!-- ResourceBundleMessageSource allows us to pick messages out of properties files -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- by default spring looks for .properties files in the class path by default -->
+				<value>mymessages</value>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- specify the bean post processor so the config -->
 <!-- 	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" /> -->
 	
@@ -56,4 +67,7 @@
 	
 	<!-- add all annotation post processors like to two commented out above -->
 	<context:annotation-config />
+	
+	<!-- ask spring to class through classes to ID the annotations that mark classes as beans -->
+	<context:component-scan base-package="com.markminisce.annotations"></context:component-scan>
 </beans>
